@@ -9,24 +9,31 @@
 
 
 fn vec_loop(mut v: Vec<i32>) -> Vec<i32> {
-    let mut v = Vec::new();
     for element in v.iter_mut() {
         
         // TODO: Fill this up so that each element in the Vec `v` is
         // multiplied by 2.
-        v.push(element*2);
+        // v.push(element*2);
+        *element = *element+*element;
     }
 
     // At this point, `v` should be equal to [4, 8, 12, 16, 20].
     return v
 }
 
+// fn vec_map(v: &Vec<i32>) -> Vec<i32> {
+//     v.iter().map(|element| {
+//         // TODO: Do the same thing as above - but instead of mutating the
+//         // Vec, you can just return the new number!
+//         *element*2;
+//     }).collect::<Vec<i32>>();
+//     return v;
+// }
+
 fn vec_map(v: &Vec<i32>) -> Vec<i32> {
-    v.iter().map(|element| {
-        // TODO: Do the same thing as above - but instead of mutating the
-        // Vec, you can just return the new number!
-        element *2;
-    }).collect()
+
+    let a = v.iter().map(|x| x * 2).collect::<Vec<i32>>();
+    return a;
 }
 
 #[cfg(test)]
