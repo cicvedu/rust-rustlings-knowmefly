@@ -5,19 +5,22 @@
 // You should not modify any existing code. All you need to do is add two line of attributes.
 
 
-// I AM NOT DONE
 
 
 extern {
+    #[no_mangle]
     fn my_demo_function(a:u32) -> u32;
+
+    #[link_name = "my_demo_function"]
     fn my_demo_function_alias(a:u32) -> u32;
 }
 
 
 
 
-mod Foo{
-    fn my_demo_function(a:u32) -> u32 {a}
+mod MyFoo{
+    #[no_mangle]
+    pub fn my_demo_function(a:u32) -> u32 {a}
 }
 
 
@@ -25,6 +28,7 @@ mod Foo{
 #[cfg(test)]
 mod tests {
     use super::*;
+    use crate::my_demo_function_alias;
 
     #[test]
     fn test_success() {
@@ -34,3 +38,4 @@ mod tests {
         }
     }
 }
+
